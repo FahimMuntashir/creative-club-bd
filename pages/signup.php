@@ -1,3 +1,21 @@
+<?php
+    include "connection.php";
+
+    if ($_SERVER["REQUEST_METHOD"]== "POST") {
+        $fname = $_POST['first_name'];
+        $lname = $_POST['last_name'];
+        $username = $_POST['username'];
+        $pass = $_POST['password'];
+        $gender = $_POST['gender'];
+        $email = $_POST['email'];
+        $phone = $_POST['phone'];
+        $subject = $_POST['subject'];
+
+    }
+
+
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -33,10 +51,19 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-2">
-                            <div class="input-group">
-                                <label class="label">username</label>
-                                <input class="input--style-4" type="text" name="last_name">
+                        
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">username</label>
+                                    <input class="input--style-4" type="text" name="username">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">password</label>
+                                    <input class="input--style-4" type="text" name="password">
+                                </div>
                             </div>
                         </div>
                         <div class="row row-space">
@@ -54,7 +81,8 @@
                                     <label class="label">Gender</label>
                                     <div class="p-t-10">
                                         <label class="radio-container m-r-45">Male
-                                            <input type="radio" checked="checked" name="gender">
+                                            <input type="radio"  name="gender">
+                                            <!-- checked="checked" -->
                                             <span class="checkmark"></span>
                                         </label>
                                         <label class="radio-container">Female
@@ -84,9 +112,9 @@
                             <div class="rs-select2 js-select-simple select--no-search">
                                 <select name="subject">
                                     <option disabled="disabled" selected="selected">Choose option</option>
-                                    <option>Subject 1</option>
-                                    <option>Subject 2</option>
-                                    <option>Subject 3</option>
+                                    <option>Fine Arts</option>
+                                    <option>Photography</option>
+                                    <option>Music</option>
                                 </select>
                                 <div class="select-dropdown"></div>
                             </div>
