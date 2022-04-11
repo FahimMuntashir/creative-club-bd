@@ -1,42 +1,59 @@
 <?php
-    include "connection.php";
+include "connection.php";
 
-    if ($_SERVER["REQUEST_METHOD"]== "POST") {
-        $fname = $_POST['first_name'];
-        $lname = $_POST['last_name'];
-        $username = $_POST['username'];
-        $pass = $_POST['password'];
-        $gender = $_POST['gender'];
-        $email = $_POST['email'];
-        $phone = $_POST['phone'];
-        $subject = $_POST['subject'];
+if (isset($_POST['signup'])) {
+    $fname = $_POST['first_name'];
+    $lname = $_POST['last_name'];
+    $username = $_POST['username'];
+    $pass = $_POST['password'];
+    $gender = $_POST['gender'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $subject = $_POST['subject'];
 
+
+    $sql = "INSERT INTO user_info(fname, lname, username, password,gender, email, phone, subject )
+VALUES ('$fname', '$lname', '$username', '$pass','$gender', '$email', '$phone', '$subject');";
+
+
+
+    $query = mysqli_query($conn, $sql);
+
+    if ($query) {
+        echo "\nNew record created successfully";
+    } else {
+        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        echo "data dont submit";
     }
+}
+
 
 
 ?>
 
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    
+
     <link rel="stylesheet" href="../css/main.css">
     <title>Sign Up Now</title>
-  </head>
-  <body>
-    
+</head>
+
+<body>
+
     <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
         <div class="wrapper wrapper--w680">
             <div class="card card-4">
                 <div class="card-body">
                     <h2 class="title">Registration Form</h2>
-                    <form method="POST">
+                    <form method="post">
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
@@ -51,7 +68,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
@@ -62,7 +79,7 @@
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">password</label>
-                                    <input class="input--style-4" type="text" name="password">
+                                    <input class="input--style-4" type="password" name="password">
                                 </div>
                             </div>
                         </div>
@@ -81,12 +98,12 @@
                                     <label class="label">Gender</label>
                                     <div class="p-t-10">
                                         <label class="radio-container m-r-45">Male
-                                            <input type="radio"  name="gender">
+                                            <input type="radio" name="gender" value="male">
                                             <!-- checked="checked" -->
                                             <span class="checkmark"></span>
                                         </label>
                                         <label class="radio-container">Female
-                                            <input type="radio" name="gender">
+                                            <input type="radio" name="gender" value="female">
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
@@ -120,7 +137,7 @@
                             </div>
                         </div>
                         <div class="p-t-15">
-                            <button class="btn btn--radius-2 btn--blue" type="submit">Sign Up</button>
+                            <button class="btn btn--radius-2 btn--blue" name="signup" type="submit">Sign Up</button>
                         </div>
                     </form>
                 </div>
@@ -138,5 +155,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     -->
-  </body>
+</body>
+
 </html>
