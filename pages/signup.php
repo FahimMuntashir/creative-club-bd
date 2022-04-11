@@ -16,6 +16,10 @@ if (isset($_POST['signup'])) {
 VALUES ('$fname', '$lname', '$username', '$pass','$gender', '$email', '$phone', '$subject');";
 
 
+    if (empty($username) || empty($pass) || empty($phone)) {
+        echo "Username, Password and Email can not be empty";
+        die();
+    }
 
     $query = mysqli_query($conn, $sql);
 
@@ -136,13 +140,23 @@ VALUES ('$fname', '$lname', '$username', '$pass','$gender', '$email', '$phone', 
                                 <div class="select-dropdown"></div>
                             </div>
                         </div>
+
+
                         <div class="p-t-15">
                             <button class="btn btn--radius-2 btn--blue" name="signup" type="submit">Sign Up</button>
                         </div>
                     </form>
+
+                    <div class="my-5 ">
+                        <a href="../index.php"><button style="color:blue" class="btn btn--radius-2 btn-link ">Back</button></a>
+
+                    </div>
+
                 </div>
+
             </div>
         </div>
+    </div>
     </div>
 
     <!-- Optional JavaScript; choose one of the two! -->
