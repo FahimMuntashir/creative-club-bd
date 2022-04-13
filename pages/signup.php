@@ -129,7 +129,7 @@ VALUES ('$fname', '$lname', '$username', '$pass','$gender', '$email', '$phone', 
                             </div>
                         </div>
                         <div class="input-group">
-                            <label class="label">Subject: </label>
+                            <label class="label">Subject:   </label>
                             <div class="rs-select2 js-select-simple select--no-search">
                                 <select name="subject">
                                     <option disabled="disabled" selected="selected">Choose option</option>
