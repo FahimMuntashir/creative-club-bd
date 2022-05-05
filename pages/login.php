@@ -1,8 +1,33 @@
 <?php
 
-    include "connection.php";
+include "connection.php";
+
+if(isset($_POST['signin'])) {
+
+	$username = $_POST['username'];
+
+	$password = $_POST['password'];
+
+	$check_database_query = mysqli_query($con, "SELECT * FROM users WHERE username='$username' AND password='$password'");
+	$check_login_query = mysqli_num_rows($check_database_query);
+
+	if($check_login_query == 1) {
+		$row = mysqli_fetch_array($check_database_query);
+		$username = $row['username'];
+
+		$user_closed_query = mysqli_query($con, "SELECT * FROM users WHERE username='$username' AND user_closed='yes'");
+		if(mysqli_num_rows($user_closed_query) == 1) {
+			$reopen_account = mysqli_query($con, "UPDATE users SET user_closed='no' WHERE username='$username'");
+		}
+
+		
+		header("Location: index.php");
+		exit();
+	}
+	
 
 
+}
 
 ?>
 
@@ -44,8 +69,7 @@
                 <div class="col-md-12 col-lg-10">
                     <div class="wrap d-md-flex">
                         <div class="img" style="
-                  background-image: url(https://images.unsplash.com/photo-1495106245177-55dc6f43e83f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzZ8fGNyZWF0aXZlJTIwc29jaWFsJTIwbWVkaWF8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60);
-                "></div>
+                  background-image: url(https://images.unsplash.com/photo-1650999354831-e98bd1284483?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80);"></div>
                         <div class="login-wrap p-4 p-md-5">
                             <div class="d-flex">
                                 <div class="w-100">
@@ -58,7 +82,7 @@
                                     </p>
                                 </div>
                             </div>
-                            <form action="#" class="signin-form">
+                            <form method="post" action="#" class="signin-form">
                                 <div class="form-group mb-3">
                                     <label class="label" for="name">Username</label>
                                     <input type="text" class="form-control" placeholder="Username" required />
@@ -68,7 +92,7 @@
                                     <input type="password" class="form-control" placeholder="Password" required />
                                 </div>
                                 <div class="form-group">
-                                    <button type="submit" class="form-control btn btn-primary rounded submit px-3">
+                                    <button type="submit" name="signin" class="form-control btn btn-primary rounded submit px-3">
                                         Sign In
                                     </button>
                                 </div>

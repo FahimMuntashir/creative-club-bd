@@ -1,22 +1,27 @@
 <?php
 include "connection.php";
 
+$error_array = array();
+
 if (isset($_POST['signup'])) {
     $fname = $_POST['first_name'];
     $lname = $_POST['last_name'];
     $username = $_POST['username'];
     $pass = $_POST['password'];
+    // $pass = md5($pass);
+
     $gender = $_POST['gender'];
     $email = $_POST['email'];
     $phone = $_POST['phone'];
     $subject = $_POST['subject'];
 
+  
 
     $sql = "INSERT INTO user_info(fname, lname, username, password,gender, email, phone, subject )
 VALUES ('$fname', '$lname', '$username', '$pass','$gender', '$email', '$phone', '$subject');";
 
 
-    if (empty($username) || empty($pass) || empty($phone)) {
+    if (empty($username)  || empty($phone)) {
         echo "Username, Password and Email can not be empty";
         die();
     }
@@ -83,7 +88,7 @@ VALUES ('$fname', '$lname', '$username', '$pass','$gender', '$email', '$phone', 
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">password</label>
-                                    <input class="input--style-4" type="password" name="password">
+                                    <input class="input--style-4" type="password" name="password" required>
                                 </div>
                             </div>
                         </div>
@@ -129,7 +134,7 @@ VALUES ('$fname', '$lname', '$username', '$pass','$gender', '$email', '$phone', 
                             </div>
                         </div>
                         <div class="input-group">
-                            <label class="label">Subject:   </label>
+                            <label class="label">Subject: </label>
                             <div class="rs-select2 js-select-simple select--no-search">
                                 <select name="subject">
                                     <option disabled="disabled" selected="selected">Choose option</option>
