@@ -42,7 +42,7 @@
               <nav class="site-navigation text-right ml-auto " role="navigation">
                 <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
                   <li class="active"><a href="index.html" class="nav-link">Creative Briefs</a></li>
-                  <li><a href="project.html" class="nav-link">Hire Talent</a></li>
+                  <li><a href="pages/talent/index.html" class="nav-link">Hire Talent</a></li>
                 </ul>
               </nav>
             </div>
@@ -57,9 +57,9 @@
             <div class="col-lg-4">
               <nav class="site-navigation text-left mr-auto " role="navigation">
                 <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
-                  <li><a href="about.html" class="nav-link">About</a></li>
-                  <li><a href="blog.html" class="nav-link">Blog</a></li>
-                  <li><a href="contact.html" class="nav-link">Contact</a></li>
+                  <li><a href="pages/about/about.html" class="nav-link">About</a></li>
+                  <li><a href="pages/blog/index.html" class="nav-link">Blog</a></li>
+                  <li><a href="pages/contact/index.html" class="nav-link">Contact</a></li>
                 </ul>
               </nav>
             </div>
