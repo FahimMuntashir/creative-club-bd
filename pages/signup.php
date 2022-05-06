@@ -1,6 +1,9 @@
 <?php
 include "connection.php";
 
+
+// header('location:login.php');
+
 $error_array = array();
 
 if (isset($_POST['signup'])) {

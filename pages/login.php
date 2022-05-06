@@ -2,36 +2,26 @@
 
 include "connection.php";
 
-if(isset($_POST['signin'])) {
+if (isset($_POST['signin'])) {
 
-	$username = $_POST['username'];
-
-	$password = $_POST['password'];
-
-	$check_database_query = mysqli_query($con, "SELECT * FROM users WHERE username='$username' AND password='$password'");
-	$check_login_query = mysqli_num_rows($check_database_query);
-
-	if($check_login_query == 1) {
-		$row = mysqli_fetch_array($check_database_query);
-		$username = $row['username'];
-
-		$user_closed_query = mysqli_query($con, "SELECT * FROM users WHERE username='$username' AND user_closed='yes'");
-		if(mysqli_num_rows($user_closed_query) == 1) {
-			$reopen_account = mysqli_query($con, "UPDATE users SET user_closed='no' WHERE username='$username'");
-		}
-
-		
-		header("Location: index.php");
-		exit();
-	}
-	
+    $name = $_POST['username'];
+    $pass = $_POST['password'];
 
 
+    $s = "select * from user_info where username='$name' && password='$pass'";
+
+    $result = mysqli_query($conn, $s);
+    $num = mysqli_num_rows($result);
+    if ($num == 1) {
+        header("location:pages/home/index.php");
+
+    } else{
+        echo '<script>alert("wrong pass or username . please try again")</script>';
+
+    }
 }
 
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -82,14 +72,14 @@ if(isset($_POST['signin'])) {
                                     </p>
                                 </div>
                             </div>
-                            <form method="post" action="#" class="signin-form">
+                            <form method="post" class="signin-form">
                                 <div class="form-group mb-3">
                                     <label class="label" for="name">Username</label>
-                                    <input type="text" class="form-control" placeholder="Username" required />
+                                    <input type="text" name="username" class="form-control" placeholder="Username" required />
                                 </div>
                                 <div class="form-group mb-3">
                                     <label class="label" for="password">Password</label>
-                                    <input type="password" class="form-control" placeholder="Password" required />
+                                    <input type="password" name="password" class="form-control" placeholder="Password" required />
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" name="signin" class="form-control btn btn-primary rounded submit px-3">
